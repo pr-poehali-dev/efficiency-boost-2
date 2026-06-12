@@ -337,42 +337,37 @@ const Index = () => {
             <h2 className="font-black" style={{ fontFamily: "Montserrat, sans-serif", fontSize: "clamp(1.9rem, 4vw, 2.8rem)", letterSpacing: "-0.03em", color: C.dark }}>Каталог</h2>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {catalogItems.map((item) => (
               <div
                 key={item.name}
                 className="group"
-                style={{ backgroundColor: "#fff", borderRadius: 20, overflow: "visible", boxShadow: C.shadow, transition: "box-shadow 0.25s, transform 0.25s" }}
-                onMouseEnter={e => { (e.currentTarget as HTMLDivElement).style.boxShadow = C.shadowHover; (e.currentTarget as HTMLDivElement).style.transform = "translateY(-4px)" }}
-                onMouseLeave={e => { (e.currentTarget as HTMLDivElement).style.boxShadow = C.shadow; (e.currentTarget as HTMLDivElement).style.transform = "translateY(0)" }}
+                style={{ backgroundColor: "#fff", borderRadius: 10, overflow: "hidden", boxShadow: "0 2px 10px rgba(0,0,0,0.10)", transition: "box-shadow 0.25s, transform 0.25s" }}
+                onMouseEnter={e => { (e.currentTarget as HTMLDivElement).style.boxShadow = "0 8px 28px rgba(0,0,0,0.18)"; (e.currentTarget as HTMLDivElement).style.transform = "translateY(-3px)" }}
+                onMouseLeave={e => { (e.currentTarget as HTMLDivElement).style.boxShadow = "0 2px 10px rgba(0,0,0,0.10)"; (e.currentTarget as HTMLDivElement).style.transform = "translateY(0)" }}
               >
-                {/* Photo + overlay badge */}
-                <div className="relative overflow-hidden" style={{ height: 165, borderRadius: "20px 20px 0 0" }}>
-                  <img src={item.img} alt={item.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-400" />
+                {/* Photo — главный акцент */}
+                <div className="relative overflow-hidden" style={{ height: 200 }}>
+                  <img src={item.img} alt={item.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                  {/* Тег в углу фото */}
                   {item.tag && (
-                    <div className="absolute top-3 left-3 px-2.5 py-1 text-xs font-bold text-white" style={{ backgroundColor: C.cta, borderRadius: 8, boxShadow: "0 2px 8px rgba(200,80,26,0.5)" }}>
+                    <div className="absolute top-2.5 left-2.5 px-2 py-0.5 text-xs font-bold text-white" style={{ backgroundColor: C.cta, borderRadius: 4 }}>
                       {item.tag}
                     </div>
                   )}
                 </div>
 
-                {/* Price badge — наезжает на фото */}
-                <div className="relative px-4" style={{ marginTop: -18 }}>
-                  <div
-                    className="inline-block px-3 py-1.5 font-black text-white text-sm"
-                    style={{ backgroundColor: C.woodDark, borderRadius: 10, boxShadow: "0 3px 12px rgba(107,68,35,0.45)", letterSpacing: "0.01em" }}
-                  >
-                    {item.price}
-                  </div>
-                </div>
-
                 {/* Info */}
-                <div className="px-4 pt-2.5 pb-4">
-                  <div className="font-semibold text-sm mb-3" style={{ color: C.dark }}>{item.name}</div>
-                  <a href="#calc">
-                    <Button size="sm" className="w-full text-white text-xs font-bold" style={{ ...ctaStyle, borderRadius: 10, paddingTop: 6, paddingBottom: 6 }}>
-                      Заказать
-                    </Button>
+                <div className="px-4 py-3">
+                  <div className="font-bold text-sm mb-0.5" style={{ color: C.dark }}>{item.name}</div>
+                  <div className="font-black text-base mb-3" style={{ color: C.cta }}>{item.price}</div>
+                  <a
+                    href="#calc"
+                    className="inline-flex items-center gap-1 text-xs font-semibold transition-opacity hover:opacity-60"
+                    style={{ color: C.woodDark, borderBottom: `1px solid ${C.woodDark}`, paddingBottom: 1 }}
+                  >
+                    Подробнее
+                    <Icon name="ArrowRight" size={12} />
                   </a>
                 </div>
               </div>
