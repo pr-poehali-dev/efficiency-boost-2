@@ -149,6 +149,30 @@ const reviews: Review[] = [
   },
 ]
 
+/* ─── Цвета ─── */
+const C = {
+  bg: "#F4EDE3",
+  dark: "#2C1F0F",
+  woodMid: "#A0713A",
+  woodLight: "#D4A96A",
+  woodDark: "#6B4423",
+  pine: "#3D6B35",
+  cream: "#FAF5ED",
+  cta: "#C8501A",       // терракотовый — главный акцент
+  ctaHover: "#A83E11",
+  shadow: "0 6px 24px rgba(44,31,15,0.13)",
+  shadowHover: "0 12px 36px rgba(44,31,15,0.22)",
+}
+
+/* ─── Общие стили кнопки CTA ─── */
+const ctaStyle: React.CSSProperties = {
+  backgroundColor: C.cta,
+  border: "none",
+  borderRadius: 14,
+  fontWeight: 700,
+  letterSpacing: "0.01em",
+}
+
 const Index = () => {
   const [openPrice, setOpenPrice] = useState<number | null>(null)
   const [selectedService, setSelectedService] = useState("")
@@ -161,65 +185,42 @@ const Index = () => {
   }
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: "var(--page-bg)", color: "#2C1F0F" }}>
+    <div className="min-h-screen" style={{ backgroundColor: C.bg, color: C.dark }}>
+
       {/* ══════════════════ HEADER ══════════════════ */}
-      <header style={{ backgroundColor: "#2C1F0F" }} className="sticky top-0 z-50 shadow-lg">
-        <div className="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
-          {/* Logo */}
+      <header style={{ backgroundColor: C.dark }} className="sticky top-0 z-50" >
+        <div
+          className="max-w-7xl mx-auto px-5 py-3 flex items-center justify-between gap-4"
+          style={{ boxShadow: "0 2px 20px rgba(0,0,0,0.35)" }}
+        >
           <div className="flex items-center gap-3 shrink-0">
-            <div
-              className="w-10 h-10 rounded-lg flex items-center justify-center"
-              style={{ backgroundColor: "var(--wood-mid)" }}
-            >
+            <div className="w-10 h-10 flex items-center justify-center" style={{ backgroundColor: C.woodMid, borderRadius: 12 }}>
               <Icon name="TreePine" size={22} className="text-white" />
             </div>
             <div>
-              <div className="font-bold text-white text-sm leading-tight" style={{ fontFamily: "Montserrat, sans-serif" }}>
+              <div className="font-extrabold text-white text-base leading-tight" style={{ fontFamily: "Montserrat, sans-serif", letterSpacing: "-0.01em" }}>
                 ДревоМастер
               </div>
-              <div className="text-xs" style={{ color: "var(--wood-light)" }}>
-                производство с 2015 г.
-              </div>
+              <div className="text-xs" style={{ color: C.woodLight }}>производство с 2015 г.</div>
             </div>
           </div>
 
-          {/* Phone */}
-          <a
-            href="tel:+79001234567"
-            className="hidden md:flex items-center gap-2 text-white font-semibold text-base hover:opacity-80 transition-opacity"
-          >
-            <Icon name="Phone" size={16} style={{ color: "var(--wood-light)" }} />
+          <a href="tel:+79001234567" className="hidden md:flex items-center gap-2 text-white font-semibold text-base hover:opacity-75 transition-opacity">
+            <Icon name="Phone" size={16} style={{ color: C.woodLight }} />
             +7 (900) 123-45-67
           </a>
 
-          {/* Social links */}
           <div className="flex items-center gap-2">
-            <a
-              href="#"
-              title="Avito"
-              className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-sm font-medium transition-opacity hover:opacity-80"
-              style={{ backgroundColor: "#00AAFF", color: "#fff" }}
-            >
-              <Icon name="ShoppingBag" size={14} />
-              <span className="hidden sm:inline">Avito</span>
+            <a href="#" className="flex items-center gap-1.5 px-3 py-2 text-sm font-semibold text-white hover:opacity-80 transition-opacity" style={{ backgroundColor: "#00AAFF", borderRadius: 10 }}>
+              <Icon name="ShoppingBag" size={14} /><span className="hidden sm:inline">Avito</span>
             </a>
-            <a
-              href="#"
-              title="WhatsApp"
-              className="w-9 h-9 rounded-lg flex items-center justify-center transition-opacity hover:opacity-80"
-              style={{ backgroundColor: "#25D366" }}
-            >
+            <a href="#" className="w-9 h-9 flex items-center justify-center hover:opacity-80 transition-opacity" style={{ backgroundColor: "#25D366", borderRadius: 10 }}>
               <Icon name="MessageCircle" size={16} className="text-white" />
             </a>
-            <a
-              href="#"
-              title="Telegram"
-              className="w-9 h-9 rounded-lg flex items-center justify-center transition-opacity hover:opacity-80"
-              style={{ backgroundColor: "#229ED9" }}
-            >
+            <a href="#" className="w-9 h-9 flex items-center justify-center hover:opacity-80 transition-opacity" style={{ backgroundColor: "#229ED9", borderRadius: 10 }}>
               <Icon name="Send" size={16} className="text-white" />
             </a>
-            <a href="tel:+79001234567" className="md:hidden w-9 h-9 rounded-lg flex items-center justify-center" style={{ backgroundColor: "var(--wood-mid)" }}>
+            <a href="tel:+79001234567" className="md:hidden w-9 h-9 flex items-center justify-center" style={{ backgroundColor: C.woodMid, borderRadius: 10 }}>
               <Icon name="Phone" size={16} className="text-white" />
             </a>
           </div>
@@ -227,73 +228,60 @@ const Index = () => {
       </header>
 
       {/* ══════════════════ HERO ══════════════════ */}
-      <section className="relative min-h-[88vh] flex items-center">
+      <section className="relative min-h-[90vh] flex items-center overflow-hidden">
         <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{
-            backgroundImage:
-              "url(https://images.unsplash.com/photo-1448630360428-65456885c650?w=1600&h=900&fit=crop)",
-          }}
+          className="absolute inset-0 bg-cover bg-center"
+          style={{ backgroundImage: "url(https://images.unsplash.com/photo-1448630360428-65456885c650?w=1600&h=900&fit=crop)" }}
         >
-          <div className="absolute inset-0" style={{ background: "linear-gradient(135deg, rgba(44,31,15,0.82) 40%, rgba(61,107,53,0.45) 100%)" }} />
+          <div className="absolute inset-0" style={{ background: "linear-gradient(130deg, rgba(44,31,15,0.85) 35%, rgba(61,107,53,0.45) 100%)" }} />
         </div>
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 py-20 w-full">
+        <div className="relative z-10 max-w-7xl mx-auto px-5 py-20 w-full">
           <div className="max-w-2xl">
             <div
-              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-sm font-medium mb-6"
-              style={{ backgroundColor: "rgba(212,169,106,0.2)", color: "var(--wood-light)", border: "1px solid rgba(212,169,106,0.4)" }}
+              className="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold mb-7"
+              style={{ backgroundColor: "rgba(212,169,106,0.18)", color: C.woodLight, border: "1px solid rgba(212,169,106,0.35)", borderRadius: 30 }}
             >
-              <Icon name="MapPin" size={14} />
+              <Icon name="MapPin" size={13} />
               Работаем по всей России · доставка включена
             </div>
 
             <h1
-              className="text-4xl md:text-6xl font-bold text-white mb-6 leading-tight"
-              style={{ fontFamily: "Montserrat, sans-serif" }}
+              className="font-black text-white mb-6 leading-[1.08]"
+              style={{ fontFamily: "Montserrat, sans-serif", fontSize: "clamp(2.4rem, 6vw, 4.2rem)", letterSpacing: "-0.03em" }}
             >
               Хозблоки, беседки<br />
               и мебель из слэбов —<br />
-              <span style={{ color: "var(--wood-light)" }}>собственное производство</span>
+              <span style={{ color: C.woodLight }}>собственное производство</span>
             </h1>
 
-            <p className="text-lg text-white/85 mb-8 leading-relaxed max-w-xl">
-              Изготавливаем из хвои и слэбов дуба/вяза. Гарантия 3 года. Монтаж под ключ за 3–7 дней.
+            <p className="text-lg mb-9 leading-relaxed" style={{ color: "rgba(255,255,255,0.82)", maxWidth: 500 }}>
+              Изготавливаем из хвои и слэбов дуба&nbsp;/&nbsp;вяза. Гарантия 3 года. Монтаж под ключ за 3–7 дней.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-3">
               <a href="#calc">
-                <Button
-                  size="lg"
-                  className="text-white font-bold px-8 py-6 text-base rounded-lg shadow-lg w-full sm:w-auto"
-                  style={{ backgroundColor: "var(--wood-mid)", border: "none" }}
-                >
+                <Button size="lg" className="text-white font-bold px-8 py-6 text-base w-full sm:w-auto" style={{ ...ctaStyle, boxShadow: "0 4px 20px rgba(200,80,26,0.45)" }}>
                   <Icon name="Calculator" size={18} className="mr-2" />
                   Рассчитать стоимость
                 </Button>
               </a>
               <a href="#catalog">
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="px-8 py-6 text-base rounded-lg w-full sm:w-auto font-semibold"
-                  style={{ borderColor: "rgba(255,255,255,0.5)", color: "#fff", backgroundColor: "rgba(255,255,255,0.08)" }}
-                >
+                <Button size="lg" variant="outline" className="px-8 py-6 text-base w-full sm:w-auto font-semibold" style={{ borderColor: "rgba(255,255,255,0.4)", color: "#fff", backgroundColor: "rgba(255,255,255,0.07)", borderRadius: 14 }}>
                   Смотреть каталог
                 </Button>
               </a>
             </div>
 
-            {/* Stats */}
-            <div className="flex flex-wrap gap-6 mt-10">
+            <div className="flex flex-wrap gap-8 mt-12">
               {[
                 { num: "9 лет", label: "на рынке" },
                 { num: "1 200+", label: "построенных объектов" },
                 { num: "3 года", label: "гарантия" },
               ].map((s) => (
                 <div key={s.label}>
-                  <div className="text-2xl font-bold" style={{ color: "var(--wood-light)", fontFamily: "Montserrat, sans-serif" }}>{s.num}</div>
-                  <div className="text-sm text-white/60">{s.label}</div>
+                  <div className="text-3xl font-black" style={{ color: C.woodLight, fontFamily: "Montserrat, sans-serif", letterSpacing: "-0.03em" }}>{s.num}</div>
+                  <div className="text-sm mt-0.5" style={{ color: "rgba(255,255,255,0.55)" }}>{s.label}</div>
                 </div>
               ))}
             </div>
@@ -302,17 +290,19 @@ const Index = () => {
       </section>
 
       {/* ══════════════════ О КОМПАНИИ ══════════════════ */}
-      <section className="py-16 px-4" style={{ backgroundColor: "#fff" }}>
+      <section className="py-20 px-5" style={{ backgroundColor: "#fff" }}>
         <div className="max-w-7xl mx-auto">
-          <div className="grid md:grid-cols-2 gap-12 items-center">
+          <div className="grid md:grid-cols-2 gap-14 items-center">
             <div>
-              <div className="text-sm font-semibold uppercase tracking-widest mb-3" style={{ color: "var(--pine)" }}>
-                О компании
-              </div>
-              <h2 className="text-3xl md:text-4xl font-bold mb-5" style={{ color: "#2C1F0F" }}>
-                Делаем из дерева —<br />честно и надёжно
+              <div className="text-xs font-bold uppercase tracking-[0.18em] mb-4" style={{ color: C.pine }}>О компании</div>
+              <h2
+                className="font-black mb-5 leading-[1.1]"
+                style={{ fontFamily: "Montserrat, sans-serif", fontSize: "clamp(1.9rem, 4vw, 2.9rem)", letterSpacing: "-0.03em", color: C.dark }}
+              >
+                Делаем из дерева —<br />
+                <span style={{ color: C.cta }}>честно и надёжно</span>
               </h2>
-              <p className="text-gray-600 mb-5 leading-relaxed">
+              <p className="text-gray-600 mb-4 leading-relaxed">
                 Работаем с 2015 года. Собственный цех в Подмосковье, свой парк станков, штатные мастера без субподряда. Используем камерную сушку хвои и ручной подбор слэбов дуба и вяза из Центральной России.
               </p>
               <p className="text-gray-600 leading-relaxed">
@@ -326,18 +316,11 @@ const Index = () => {
                 { icon: "Hammer", title: "Свой цех", desc: "Полный цикл производства — без субподряда" },
                 { icon: "ShieldCheck", title: "Гарантия 3 года", desc: "На конструкцию и покрытие" },
               ].map((f) => (
-                <div
-                  key={f.title}
-                  className="rounded-xl p-5"
-                  style={{ backgroundColor: "var(--cream)", border: "1px solid rgba(160,113,58,0.2)" }}
-                >
-                  <div
-                    className="w-10 h-10 rounded-lg flex items-center justify-center mb-3"
-                    style={{ backgroundColor: "var(--wood-mid)" }}
-                  >
+                <div key={f.title} className="p-5" style={{ backgroundColor: C.cream, border: "1px solid rgba(160,113,58,0.18)", borderRadius: 20, boxShadow: C.shadow }}>
+                  <div className="w-10 h-10 flex items-center justify-center mb-3" style={{ backgroundColor: C.woodMid, borderRadius: 12 }}>
                     <Icon name={f.icon} fallback="CheckCircle" size={20} className="text-white" />
                   </div>
-                  <div className="font-semibold text-sm mb-1" style={{ color: "#2C1F0F" }}>{f.title}</div>
+                  <div className="font-bold text-sm mb-1" style={{ color: C.dark }}>{f.title}</div>
                   <div className="text-xs text-gray-500">{f.desc}</div>
                 </div>
               ))}
@@ -347,46 +330,47 @@ const Index = () => {
       </section>
 
       {/* ══════════════════ КАТАЛОГ ══════════════════ */}
-      <section id="catalog" className="py-16 px-4" style={{ backgroundColor: "var(--page-bg)" }}>
+      <section id="catalog" className="py-20 px-5" style={{ backgroundColor: C.bg }}>
         <div className="max-w-7xl mx-auto">
           <div className="mb-10">
-            <div className="text-sm font-semibold uppercase tracking-widest mb-2" style={{ color: "var(--pine)" }}>
-              Наша продукция
-            </div>
-            <h2 className="text-3xl md:text-4xl font-bold" style={{ color: "#2C1F0F" }}>Каталог</h2>
+            <div className="text-xs font-bold uppercase tracking-[0.18em] mb-3" style={{ color: C.pine }}>Наша продукция</div>
+            <h2 className="font-black" style={{ fontFamily: "Montserrat, sans-serif", fontSize: "clamp(1.9rem, 4vw, 2.8rem)", letterSpacing: "-0.03em", color: C.dark }}>Каталог</h2>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
             {catalogItems.map((item) => (
               <div
                 key={item.name}
-                className="rounded-xl overflow-hidden group"
-                style={{ backgroundColor: "#fff", border: "1px solid rgba(160,113,58,0.2)", boxShadow: "0 2px 8px rgba(0,0,0,0.06)" }}
+                className="group"
+                style={{ backgroundColor: "#fff", borderRadius: 20, overflow: "visible", boxShadow: C.shadow, transition: "box-shadow 0.25s, transform 0.25s" }}
+                onMouseEnter={e => { (e.currentTarget as HTMLDivElement).style.boxShadow = C.shadowHover; (e.currentTarget as HTMLDivElement).style.transform = "translateY(-4px)" }}
+                onMouseLeave={e => { (e.currentTarget as HTMLDivElement).style.boxShadow = C.shadow; (e.currentTarget as HTMLDivElement).style.transform = "translateY(0)" }}
               >
-                <div className="relative overflow-hidden" style={{ height: 160 }}>
-                  <img
-                    src={item.img}
-                    alt={item.name}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                  />
+                {/* Photo + overlay badge */}
+                <div className="relative overflow-hidden" style={{ height: 165, borderRadius: "20px 20px 0 0" }}>
+                  <img src={item.img} alt={item.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-400" />
                   {item.tag && (
-                    <div
-                      className="absolute top-2 left-2 px-2 py-1 rounded text-xs font-semibold"
-                      style={{ backgroundColor: "var(--wood-mid)", color: "#fff" }}
-                    >
+                    <div className="absolute top-3 left-3 px-2.5 py-1 text-xs font-bold text-white" style={{ backgroundColor: C.cta, borderRadius: 8, boxShadow: "0 2px 8px rgba(200,80,26,0.5)" }}>
                       {item.tag}
                     </div>
                   )}
                 </div>
-                <div className="p-4">
-                  <div className="font-semibold text-sm mb-1" style={{ color: "#2C1F0F" }}>{item.name}</div>
-                  <div className="font-bold mb-3" style={{ color: "var(--wood-dark)" }}>{item.price}</div>
+
+                {/* Price badge — наезжает на фото */}
+                <div className="relative px-4" style={{ marginTop: -18 }}>
+                  <div
+                    className="inline-block px-3 py-1.5 font-black text-white text-sm"
+                    style={{ backgroundColor: C.woodDark, borderRadius: 10, boxShadow: "0 3px 12px rgba(107,68,35,0.45)", letterSpacing: "0.01em" }}
+                  >
+                    {item.price}
+                  </div>
+                </div>
+
+                {/* Info */}
+                <div className="px-4 pt-2.5 pb-4">
+                  <div className="font-semibold text-sm mb-3" style={{ color: C.dark }}>{item.name}</div>
                   <a href="#calc">
-                    <Button
-                      size="sm"
-                      className="w-full text-white text-xs font-semibold"
-                      style={{ backgroundColor: "var(--pine)", border: "none" }}
-                    >
+                    <Button size="sm" className="w-full text-white text-xs font-bold" style={{ ...ctaStyle, borderRadius: 10, paddingTop: 6, paddingBottom: 6 }}>
                       Заказать
                     </Button>
                   </a>
@@ -397,50 +381,39 @@ const Index = () => {
         </div>
       </section>
 
-      {/* ══════════════════ КАЛЬКУЛЯТОР / ФОРМА ══════════════════ */}
-      <section id="calc" className="py-16 px-4" style={{ backgroundColor: "#2C1F0F" }}>
+      {/* ══════════════════ ФОРМА ══════════════════ */}
+      <section id="calc" className="py-20 px-5" style={{ backgroundColor: C.dark }}>
         <div className="max-w-2xl mx-auto">
           <div className="text-center mb-10">
-            <div className="text-sm font-semibold uppercase tracking-widest mb-3" style={{ color: "var(--wood-light)" }}>
-              Обратная связь
-            </div>
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-3">Рассчитать стоимость</h2>
-            <p className="text-white/60">Выберите категорию — мы перезвоним в течение 30 минут</p>
+            <div className="text-xs font-bold uppercase tracking-[0.18em] mb-3" style={{ color: C.woodLight }}>Обратная связь</div>
+            <h2 className="font-black text-white mb-3" style={{ fontFamily: "Montserrat, sans-serif", fontSize: "clamp(1.8rem, 4vw, 2.6rem)", letterSpacing: "-0.03em" }}>
+              Рассчитать стоимость
+            </h2>
+            <p style={{ color: "rgba(255,255,255,0.55)" }}>Выберите категорию — перезвоним в течение 30 минут</p>
           </div>
 
           {formSent ? (
-            <div
-              className="rounded-2xl p-10 text-center"
-              style={{ backgroundColor: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)" }}
-            >
-              <div
-                className="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4"
-                style={{ backgroundColor: "var(--pine)" }}
-              >
+            <div className="p-10 text-center" style={{ backgroundColor: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 24 }}>
+              <div className="w-16 h-16 flex items-center justify-center mx-auto mb-4" style={{ backgroundColor: C.pine, borderRadius: "50%" }}>
                 <Icon name="CheckCircle" size={32} className="text-white" />
               </div>
               <h3 className="text-xl font-bold text-white mb-2">Заявка принята!</h3>
-              <p className="text-white/60">Наш менеджер свяжется с вами в ближайшее время.</p>
+              <p style={{ color: "rgba(255,255,255,0.5)" }}>Наш менеджер свяжется с вами в ближайшее время.</p>
             </div>
           ) : (
             <form
               onSubmit={handleFormSubmit}
-              className="rounded-2xl p-8 space-y-5"
-              style={{ backgroundColor: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.1)" }}
+              className="space-y-5 p-8"
+              style={{ backgroundColor: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 24 }}
             >
-              {/* Service Select */}
               <div>
-                <label className="block text-sm font-medium text-white/80 mb-2">Что вас интересует?</label>
+                <label className="block text-sm font-medium mb-2" style={{ color: "rgba(255,255,255,0.75)" }}>Что вас интересует?</label>
                 <select
                   value={selectedService}
                   onChange={(e) => setSelectedService(e.target.value)}
                   required
-                  className="w-full rounded-lg px-4 py-3 text-sm font-medium outline-none"
-                  style={{
-                    backgroundColor: "rgba(255,255,255,0.08)",
-                    border: "1px solid rgba(255,255,255,0.15)",
-                    color: selectedService ? "#fff" : "rgba(255,255,255,0.45)",
-                  }}
+                  className="w-full px-4 py-3 text-sm font-medium outline-none"
+                  style={{ backgroundColor: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.15)", borderRadius: 12, color: selectedService ? "#fff" : "rgba(255,255,255,0.4)" }}
                 >
                   <option value="" disabled>Выберите категорию</option>
                   <option value="hozblok">Хозблок</option>
@@ -453,86 +426,58 @@ const Index = () => {
 
               <div className="grid sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-sm font-medium text-white/80 mb-2">Ваше имя</label>
-                  <input
-                    type="text"
-                    placeholder="Иван"
-                    required
-                    value={formData.name}
-                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                    className="w-full rounded-lg px-4 py-3 text-sm text-white placeholder-white/30 outline-none"
-                    style={{ backgroundColor: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.15)" }}
-                  />
+                  <label className="block text-sm font-medium mb-2" style={{ color: "rgba(255,255,255,0.75)" }}>Ваше имя</label>
+                  <input type="text" placeholder="Иван" required value={formData.name} onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                    className="w-full px-4 py-3 text-sm text-white placeholder-white/30 outline-none"
+                    style={{ backgroundColor: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.15)", borderRadius: 12 }} />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-white/80 mb-2">Телефон</label>
-                  <input
-                    type="tel"
-                    placeholder="+7 (___) ___-__-__"
-                    required
-                    value={formData.phone}
-                    onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                    className="w-full rounded-lg px-4 py-3 text-sm text-white placeholder-white/30 outline-none"
-                    style={{ backgroundColor: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.15)" }}
-                  />
+                  <label className="block text-sm font-medium mb-2" style={{ color: "rgba(255,255,255,0.75)" }}>Телефон</label>
+                  <input type="tel" placeholder="+7 (___) ___-__-__" required value={formData.phone} onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                    className="w-full px-4 py-3 text-sm text-white placeholder-white/30 outline-none"
+                    style={{ backgroundColor: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.15)", borderRadius: 12 }} />
                 </div>
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-white/80 mb-2">Комментарий (необязательно)</label>
-                <textarea
-                  rows={3}
-                  placeholder="Размер, материал, сроки..."
-                  value={formData.comment}
-                  onChange={(e) => setFormData({ ...formData, comment: e.target.value })}
-                  className="w-full rounded-lg px-4 py-3 text-sm text-white placeholder-white/30 outline-none resize-none"
-                  style={{ backgroundColor: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.15)" }}
-                />
+                <label className="block text-sm font-medium mb-2" style={{ color: "rgba(255,255,255,0.75)" }}>Комментарий</label>
+                <textarea rows={3} placeholder="Размер, материал, сроки..." value={formData.comment} onChange={(e) => setFormData({ ...formData, comment: e.target.value })}
+                  className="w-full px-4 py-3 text-sm text-white placeholder-white/30 outline-none resize-none"
+                  style={{ backgroundColor: "rgba(255,255,255,0.08)", border: "1px solid rgba(255,255,255,0.15)", borderRadius: 12 }} />
               </div>
 
-              <Button
-                type="submit"
-                size="lg"
-                className="w-full text-white font-bold py-4 text-base rounded-lg"
-                style={{ backgroundColor: "var(--wood-mid)", border: "none" }}
-              >
+              <Button type="submit" size="lg" className="w-full text-white font-bold py-4 text-base" style={{ ...ctaStyle, boxShadow: "0 4px 20px rgba(200,80,26,0.4)" }}>
                 Отправить заявку
               </Button>
-
-              <p className="text-center text-xs text-white/30">Нажимая кнопку, вы соглашаетесь с обработкой персональных данных</p>
+              <p className="text-center text-xs" style={{ color: "rgba(255,255,255,0.25)" }}>
+                Нажимая кнопку, вы соглашаетесь с обработкой персональных данных
+              </p>
             </form>
           )}
         </div>
       </section>
 
       {/* ══════════════════ ГАЛЕРЕЯ ══════════════════ */}
-      <section className="py-16 px-4" style={{ backgroundColor: "var(--page-bg)" }}>
+      <section className="py-20 px-5" style={{ backgroundColor: C.bg }}>
         <div className="max-w-7xl mx-auto">
           <div className="mb-10">
-            <div className="text-sm font-semibold uppercase tracking-widest mb-2" style={{ color: "var(--pine)" }}>
-              Портфолио
-            </div>
-            <h2 className="text-3xl md:text-4xl font-bold" style={{ color: "#2C1F0F" }}>Наши работы</h2>
+            <div className="text-xs font-bold uppercase tracking-[0.18em] mb-3" style={{ color: C.pine }}>Портфолио</div>
+            <h2 className="font-black" style={{ fontFamily: "Montserrat, sans-serif", fontSize: "clamp(1.9rem, 4vw, 2.8rem)", letterSpacing: "-0.03em", color: C.dark }}>
+              Наши работы
+            </h2>
           </div>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {galleryImages.map((src, i) => (
-              <div key={i} className="rounded-xl overflow-hidden group" style={{ height: 200 }}>
-                <img
-                  src={src}
-                  alt={`Работа ${i + 1}`}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                />
+              <div key={i} className="overflow-hidden group" style={{ height: 200, borderRadius: 20, boxShadow: C.shadow }}>
+                <img src={src} alt={`Работа ${i + 1}`} className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-400" style={{ borderRadius: 20 }} />
               </div>
             ))}
           </div>
-          <div className="text-center mt-8">
+
+          <div className="text-center mt-9">
             <a href="#">
-              <Button
-                variant="outline"
-                size="lg"
-                className="font-semibold px-8"
-                style={{ borderColor: "var(--wood-mid)", color: "var(--wood-dark)" }}
-              >
+              <Button variant="outline" size="lg" className="font-bold px-8" style={{ borderColor: C.woodMid, color: C.woodDark, borderRadius: 14 }}>
                 <Icon name="ExternalLink" size={16} className="mr-2" />
                 Все работы на Avito
               </Button>
@@ -542,44 +487,33 @@ const Index = () => {
       </section>
 
       {/* ══════════════════ ПРАЙС-ЛИСТ ══════════════════ */}
-      <section className="py-16 px-4" style={{ backgroundColor: "#fff" }}>
+      <section className="py-20 px-5" style={{ backgroundColor: "#fff" }}>
         <div className="max-w-3xl mx-auto">
           <div className="mb-10">
-            <div className="text-sm font-semibold uppercase tracking-widest mb-2" style={{ color: "var(--pine)" }}>
-              Цены
-            </div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-2" style={{ color: "#2C1F0F" }}>Прайс-лист</h2>
-            <p className="text-gray-500 text-sm">Цены окончательные. Доставка и монтаж — включены в стоимость по Московской области.</p>
+            <div className="text-xs font-bold uppercase tracking-[0.18em] mb-3" style={{ color: C.pine }}>Цены</div>
+            <h2 className="font-black mb-2" style={{ fontFamily: "Montserrat, sans-serif", fontSize: "clamp(1.9rem, 4vw, 2.8rem)", letterSpacing: "-0.03em", color: C.dark }}>
+              Прайс-лист
+            </h2>
+            <p className="text-sm text-gray-500">Цены окончательные. Доставка и монтаж включены по Московской области.</p>
           </div>
 
           <div className="space-y-3">
             {priceData.map((cat, i) => (
-              <div
-                key={cat.name}
-                className="rounded-xl overflow-hidden"
-                style={{ border: "1px solid rgba(160,113,58,0.25)" }}
-              >
+              <div key={cat.name} style={{ border: "1.5px solid rgba(160,113,58,0.22)", borderRadius: 18, overflow: "hidden", boxShadow: openPrice === i ? C.shadow : "none", transition: "box-shadow 0.2s" }}>
                 <button
                   onClick={() => setOpenPrice(openPrice === i ? null : i)}
-                  className="w-full flex items-center justify-between px-6 py-4 text-left hover:opacity-90 transition-opacity"
-                  style={{ backgroundColor: openPrice === i ? "var(--wood-dark)" : "var(--cream)" }}
+                  className="w-full flex items-center justify-between px-6 py-4 text-left hover:opacity-95 transition-opacity"
+                  style={{ backgroundColor: openPrice === i ? C.woodDark : C.cream }}
                 >
                   <div className="flex items-center gap-3">
-                    <span className="font-bold text-base" style={{ color: openPrice === i ? "#fff" : "#2C1F0F" }}>
+                    <span className="font-black text-base" style={{ fontFamily: "Montserrat, sans-serif", color: openPrice === i ? "#fff" : C.dark }}>
                       {cat.name}
                     </span>
-                    <span
-                      className="text-sm font-medium"
-                      style={{ color: openPrice === i ? "var(--wood-light)" : "var(--wood-mid)" }}
-                    >
+                    <span className="text-sm font-semibold px-2.5 py-0.5" style={{ backgroundColor: openPrice === i ? "rgba(255,255,255,0.15)" : "rgba(200,80,26,0.1)", color: openPrice === i ? C.woodLight : C.cta, borderRadius: 8 }}>
                       {cat.price}
                     </span>
                   </div>
-                  <Icon
-                    name={openPrice === i ? "ChevronUp" : "ChevronDown"}
-                    size={18}
-                    style={{ color: openPrice === i ? "#fff" : "var(--stone)" }}
-                  />
+                  <Icon name={openPrice === i ? "ChevronUp" : "ChevronDown"} size={18} style={{ color: openPrice === i ? "#fff" : C.woodMid }} />
                 </button>
 
                 {openPrice === i && (
@@ -587,9 +521,7 @@ const Index = () => {
                     {cat.items.map((item) => (
                       <div key={item.name} className="flex items-center justify-between px-6 py-3" style={{ backgroundColor: "#FDFAF6" }}>
                         <span className="text-sm text-gray-700">{item.name}</span>
-                        <span className="font-bold text-sm ml-4 shrink-0" style={{ color: "var(--wood-dark)" }}>
-                          {item.price}
-                        </span>
+                        <span className="font-black text-sm ml-4 shrink-0" style={{ color: C.cta }}>{item.price}</span>
                       </div>
                     ))}
                   </div>
@@ -601,47 +533,39 @@ const Index = () => {
       </section>
 
       {/* ══════════════════ ОТЗЫВЫ ══════════════════ */}
-      <section className="py-16 px-4" style={{ backgroundColor: "var(--page-bg)" }}>
+      <section className="py-20 px-5" style={{ backgroundColor: C.bg }}>
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-10">
             <div>
-              <div className="text-sm font-semibold uppercase tracking-widest mb-2" style={{ color: "var(--pine)" }}>
-                Отзывы
-              </div>
-              <h2 className="text-3xl md:text-4xl font-bold" style={{ color: "#2C1F0F" }}>Что говорят клиенты</h2>
+              <div className="text-xs font-bold uppercase tracking-[0.18em] mb-3" style={{ color: C.pine }}>Отзывы</div>
+              <h2 className="font-black" style={{ fontFamily: "Montserrat, sans-serif", fontSize: "clamp(1.9rem, 4vw, 2.8rem)", letterSpacing: "-0.03em", color: C.dark }}>
+                Что говорят клиенты
+              </h2>
             </div>
-            <a
-              href="#"
-              className="inline-flex items-center gap-2 text-sm font-semibold hover:opacity-75 transition-opacity shrink-0"
-              style={{ color: "#00AAFF" }}
-            >
-              <Icon name="ShoppingBag" size={16} />
-              Все отзывы на Avito
+            <a href="#" className="inline-flex items-center gap-2 text-sm font-bold hover:opacity-70 transition-opacity shrink-0" style={{ color: "#00AAFF" }}>
+              <Icon name="ShoppingBag" size={16} />Все отзывы на Avito
             </a>
           </div>
 
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
             {reviews.map((r) => (
               <div
                 key={r.name}
-                className="rounded-xl p-5"
-                style={{ backgroundColor: "#fff", border: "1px solid rgba(160,113,58,0.2)", boxShadow: "0 2px 8px rgba(0,0,0,0.04)" }}
+                className="p-5 flex flex-col"
+                style={{ backgroundColor: "#fff", borderRadius: 20, border: "1px solid rgba(160,113,58,0.15)", boxShadow: C.shadow }}
               >
                 <div className="flex gap-0.5 mb-3">
                   {Array.from({ length: r.rating }).map((_, i) => (
                     <Icon key={i} name="Star" size={14} style={{ color: "#F59E0B" }} />
                   ))}
                 </div>
-                <p className="text-sm text-gray-600 leading-relaxed mb-4">«{r.text}»</p>
-                <div className="flex items-center gap-2 mt-auto">
-                  <div
-                    className="w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold text-white shrink-0"
-                    style={{ backgroundColor: "var(--wood-mid)" }}
-                  >
+                <p className="text-sm text-gray-600 leading-relaxed flex-1">«{r.text}»</p>
+                <div className="flex items-center gap-2 mt-5">
+                  <div className="w-8 h-8 flex items-center justify-center text-xs font-black text-white shrink-0" style={{ backgroundColor: C.woodMid, borderRadius: "50%" }}>
                     {r.name[0]}
                   </div>
                   <div>
-                    <div className="text-sm font-semibold" style={{ color: "#2C1F0F" }}>{r.name}</div>
+                    <div className="text-sm font-semibold" style={{ color: C.dark }}>{r.name}</div>
                     <div className="text-xs text-gray-400">{r.date}</div>
                   </div>
                 </div>
@@ -652,79 +576,66 @@ const Index = () => {
       </section>
 
       {/* ══════════════════ FOOTER ══════════════════ */}
-      <footer style={{ backgroundColor: "#1A1108" }} className="pt-12 pb-6 px-4">
+      <footer style={{ backgroundColor: "#1A1108" }} className="pt-14 pb-6 px-5">
         <div className="max-w-7xl mx-auto">
           <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-10 mb-10">
-            {/* Brand */}
             <div>
               <div className="flex items-center gap-3 mb-4">
-                <div
-                  className="w-10 h-10 rounded-lg flex items-center justify-center"
-                  style={{ backgroundColor: "var(--wood-mid)" }}
-                >
+                <div className="w-10 h-10 flex items-center justify-center" style={{ backgroundColor: C.woodMid, borderRadius: 12 }}>
                   <Icon name="TreePine" size={22} className="text-white" />
                 </div>
-                <div className="font-bold text-white text-base" style={{ fontFamily: "Montserrat, sans-serif" }}>
-                  ДревоМастер
-                </div>
+                <div className="font-extrabold text-white text-base" style={{ fontFamily: "Montserrat, sans-serif" }}>ДревоМастер</div>
               </div>
-              <p className="text-sm leading-relaxed mb-4" style={{ color: "rgba(255,255,255,0.5)" }}>
-                Производство деревянных хозблоков, беседок, террас и мебели из слэбов дуба и вяза. Работаем с 2015 года.
+              <p className="text-sm leading-relaxed mb-5" style={{ color: "rgba(255,255,255,0.45)" }}>
+                Производство деревянных хозблоков, беседок, террас и мебели из слэбов. Работаем с 2015 года.
               </p>
               <div className="flex gap-2">
-                <a href="#" style={{ backgroundColor: "#00AAFF" }} className="w-9 h-9 rounded-lg flex items-center justify-center hover:opacity-80 transition-opacity">
-                  <Icon name="ShoppingBag" size={16} className="text-white" />
-                </a>
-                <a href="#" style={{ backgroundColor: "#25D366" }} className="w-9 h-9 rounded-lg flex items-center justify-center hover:opacity-80 transition-opacity">
-                  <Icon name="MessageCircle" size={16} className="text-white" />
-                </a>
-                <a href="#" style={{ backgroundColor: "#229ED9" }} className="w-9 h-9 rounded-lg flex items-center justify-center hover:opacity-80 transition-opacity">
-                  <Icon name="Send" size={16} className="text-white" />
-                </a>
+                {[
+                  { bg: "#00AAFF", icon: "ShoppingBag" },
+                  { bg: "#25D366", icon: "MessageCircle" },
+                  { bg: "#229ED9", icon: "Send" },
+                ].map(s => (
+                  <a key={s.icon} href="#" className="w-9 h-9 flex items-center justify-center hover:opacity-75 transition-opacity" style={{ backgroundColor: s.bg, borderRadius: 10 }}>
+                    <Icon name={s.icon} fallback="Circle" size={16} className="text-white" />
+                  </a>
+                ))}
               </div>
             </div>
 
-            {/* Catalog links */}
             <div>
-              <div className="font-semibold text-white mb-4 text-sm uppercase tracking-wide">Каталог</div>
+              <div className="font-bold text-white mb-4 text-xs uppercase tracking-widest">Каталог</div>
               <ul className="space-y-2">
                 {["Хозблоки", "Беседки", "Террасы", "Мебель из слэбов"].map((item) => (
                   <li key={item}>
-                    <a href="#catalog" className="text-sm hover:text-white transition-colors" style={{ color: "rgba(255,255,255,0.5)" }}>
-                      {item}
-                    </a>
+                    <a href="#catalog" className="text-sm hover:text-white transition-colors" style={{ color: "rgba(255,255,255,0.45)" }}>{item}</a>
                   </li>
                 ))}
               </ul>
             </div>
 
-            {/* Contacts */}
             <div>
-              <div className="font-semibold text-white mb-4 text-sm uppercase tracking-wide">Контакты</div>
+              <div className="font-bold text-white mb-4 text-xs uppercase tracking-widest">Контакты</div>
               <ul className="space-y-3">
                 <li className="flex items-start gap-2">
-                  <Icon name="Phone" size={15} style={{ color: "var(--wood-light)", marginTop: 2 }} />
+                  <Icon name="Phone" size={15} style={{ color: C.woodLight, marginTop: 2 }} />
                   <div>
-                    <a href="tel:+79001234567" className="text-sm text-white hover:opacity-80">+7 (900) 123-45-67</a>
-                    <div className="text-xs" style={{ color: "rgba(255,255,255,0.35)" }}>Пн–Сб, 9:00–19:00</div>
+                    <a href="tel:+79001234567" className="text-sm text-white hover:opacity-75">+7 (900) 123-45-67</a>
+                    <div className="text-xs" style={{ color: "rgba(255,255,255,0.3)" }}>Пн–Сб, 9:00–19:00</div>
                   </div>
                 </li>
                 <li className="flex items-start gap-2">
-                  <Icon name="Mail" size={15} style={{ color: "var(--wood-light)", marginTop: 2 }} />
-                  <a href="mailto:info@drevomaster.ru" className="text-sm text-white hover:opacity-80">info@drevomaster.ru</a>
+                  <Icon name="Mail" size={15} style={{ color: C.woodLight, marginTop: 2 }} />
+                  <a href="mailto:info@drevomaster.ru" className="text-sm text-white hover:opacity-75">info@drevomaster.ru</a>
                 </li>
                 <li className="flex items-start gap-2">
-                  <Icon name="MapPin" size={15} style={{ color: "var(--wood-light)", marginTop: 2 }} />
-                  <span className="text-sm" style={{ color: "rgba(255,255,255,0.5)" }}>Московская обл., Чехов, ул. Производственная, 12</span>
+                  <Icon name="MapPin" size={15} style={{ color: C.woodLight, marginTop: 2 }} />
+                  <span className="text-sm" style={{ color: "rgba(255,255,255,0.45)" }}>Московская обл., Чехов, ул. Производственная, 12</span>
                 </li>
               </ul>
             </div>
           </div>
 
-          <div
-            className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs"
-            style={{ borderTop: "1px solid rgba(255,255,255,0.08)", color: "rgba(255,255,255,0.3)" }}
-          >
+          <div className="pt-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs" style={{ borderTop: "1px solid rgba(255,255,255,0.08)", color: "rgba(255,255,255,0.25)" }}>
             <span>© 2024 ДревоМастер. Все права защищены.</span>
             <span>ИП Иванов И.И. · ИНН 501234567890 · ОГРНИП 315501234567890</span>
           </div>
