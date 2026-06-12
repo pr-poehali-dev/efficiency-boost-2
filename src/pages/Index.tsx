@@ -294,7 +294,7 @@ const Index = () => {
         <div className="max-w-7xl mx-auto">
           <div className="grid md:grid-cols-2 gap-14 items-center">
             <div>
-              <div className="text-xs font-bold uppercase tracking-[0.18em] mb-4" style={{ color: C.pine }}>О компании</div>
+              {/* label hidden */}
               <h2
                 className="font-black mb-5 leading-[1.1]"
                 style={{ fontFamily: "Montserrat, sans-serif", fontSize: "clamp(1.9rem, 4vw, 2.9rem)", letterSpacing: "-0.03em", color: C.dark }}
@@ -333,7 +333,7 @@ const Index = () => {
       <section id="catalog" className="py-20 px-5" style={{ backgroundColor: C.bg }}>
         <div className="max-w-7xl mx-auto">
           <div className="mb-10">
-            <div className="text-xs font-bold uppercase tracking-[0.18em] mb-3" style={{ color: C.pine }}>Наша продукция</div>
+            {/* label hidden */}
             <h2 className="font-black" style={{ fontFamily: "Montserrat, sans-serif", fontSize: "clamp(1.9rem, 4vw, 2.8rem)", letterSpacing: "-0.03em", color: C.dark }}>Каталог</h2>
           </div>
 
@@ -383,7 +383,7 @@ const Index = () => {
 
       {/* ══════════════════ ФОРМА ══════════════════ */}
       <section id="calc" className="py-20 px-5" style={{ backgroundColor: C.dark }}>
-        <div className="max-w-2xl mx-auto">
+        <div style={{ maxWidth: "46rem" }} className="mx-auto">
           <div className="text-center mb-10">
             <div className="text-xs font-bold uppercase tracking-[0.18em] mb-3" style={{ color: C.woodLight }}>Обратная связь</div>
             <h2 className="font-black text-white mb-3" style={{ fontFamily: "Montserrat, sans-serif", fontSize: "clamp(1.8rem, 4vw, 2.6rem)", letterSpacing: "-0.03em" }}>
@@ -458,31 +458,34 @@ const Index = () => {
       </section>
 
       {/* ══════════════════ ГАЛЕРЕЯ ══════════════════ */}
-      <section className="py-20 px-5" style={{ backgroundColor: C.bg }}>
-        <div className="max-w-7xl mx-auto">
-          <div className="mb-10">
-            <div className="text-xs font-bold uppercase tracking-[0.18em] mb-3" style={{ color: C.pine }}>Портфолио</div>
-            <h2 className="font-black" style={{ fontFamily: "Montserrat, sans-serif", fontSize: "clamp(1.9rem, 4vw, 2.8rem)", letterSpacing: "-0.03em", color: C.dark }}>
-              Наши работы
-            </h2>
-          </div>
+      <section style={{ backgroundColor: C.bg }}>
+        <div className="max-w-7xl mx-auto px-5 pt-20 pb-10">
+          {/* label hidden */}
+          <h2 className="font-black mb-0" style={{ fontFamily: "Montserrat, sans-serif", fontSize: "clamp(1.9rem, 4vw, 2.8rem)", letterSpacing: "-0.03em", color: C.dark }}>
+            Наши работы
+          </h2>
+        </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            {galleryImages.map((src, i) => (
-              <div key={i} className="overflow-hidden group" style={{ height: 200, borderRadius: 20, boxShadow: C.shadow }}>
-                <img src={src} alt={`Работа ${i + 1}`} className="w-full h-full object-cover group-hover:scale-108 transition-transform duration-400" style={{ borderRadius: 20 }} />
-              </div>
-            ))}
-          </div>
+        {/* Лента на всю ширину — 2 ряда по 4, без отступов */}
+        <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gridTemplateRows: "repeat(2, 1fr)" }}>
+          {galleryImages.map((src, i) => (
+            <div key={i} className="overflow-hidden group" style={{ aspectRatio: "1 / 1" }}>
+              <img
+                src={src}
+                alt={`Работа ${i + 1}`}
+                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-400"
+              />
+            </div>
+          ))}
+        </div>
 
-          <div className="text-center mt-9">
-            <a href="#">
-              <Button variant="outline" size="lg" className="font-bold px-8" style={{ borderColor: C.woodMid, color: C.woodDark, borderRadius: 14 }}>
-                <Icon name="ExternalLink" size={16} className="mr-2" />
-                Все работы на Avito
-              </Button>
-            </a>
-          </div>
+        <div className="max-w-7xl mx-auto px-5 pb-20 pt-9 text-center">
+          <a href="#">
+            <Button variant="outline" size="lg" className="font-bold px-8" style={{ borderColor: C.woodMid, color: C.woodDark, borderRadius: 14 }}>
+              <Icon name="ExternalLink" size={16} className="mr-2" />
+              Все работы на Avito
+            </Button>
+          </a>
         </div>
       </section>
 
@@ -490,7 +493,7 @@ const Index = () => {
       <section className="py-20 px-5" style={{ backgroundColor: "#fff" }}>
         <div className="max-w-3xl mx-auto">
           <div className="mb-10">
-            <div className="text-xs font-bold uppercase tracking-[0.18em] mb-3" style={{ color: C.pine }}>Цены</div>
+            {/* label hidden */}
             <h2 className="font-black mb-2" style={{ fontFamily: "Montserrat, sans-serif", fontSize: "clamp(1.9rem, 4vw, 2.8rem)", letterSpacing: "-0.03em", color: C.dark }}>
               Прайс-лист
             </h2>
@@ -537,7 +540,7 @@ const Index = () => {
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-10">
             <div>
-              <div className="text-xs font-bold uppercase tracking-[0.18em] mb-3" style={{ color: C.pine }}>Отзывы</div>
+              {/* label hidden */}
               <h2 className="font-black" style={{ fontFamily: "Montserrat, sans-serif", fontSize: "clamp(1.9rem, 4vw, 2.8rem)", letterSpacing: "-0.03em", color: C.dark }}>
                 Что говорят клиенты
               </h2>
