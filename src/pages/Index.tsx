@@ -19,62 +19,59 @@ const catalogItems = [
   {
     name: "Хозблок 3×4 м",
     price: "от 68 000 ₽",
-    img: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=300&fit=crop",
-    tag: "Хит продаж",
+    img: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&h=450&fit=crop",
   },
   {
     name: "Хозблок 3×6 м",
     price: "от 92 000 ₽",
-    img: "https://images.unsplash.com/photo-1448630360428-65456885c650?w=400&h=300&fit=crop",
-    tag: "",
+    img: "https://images.unsplash.com/photo-1518780664697-55e3ad937233?w=600&h=450&fit=crop",
   },
   {
     name: "Беседка 3×3 м",
     price: "от 45 000 ₽",
-    img: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=300&fit=crop",
-    tag: "Популярное",
+    img: "https://images.unsplash.com/photo-1589923188900-85dae523342b?w=600&h=450&fit=crop",
   },
   {
     name: "Беседка 4×4 м с барбекю",
     price: "от 78 000 ₽",
-    img: "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=400&h=300&fit=crop",
-    tag: "",
+    img: "https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=600&h=450&fit=crop",
   },
   {
     name: "Терраса открытая",
     price: "от 55 000 ₽",
-    img: "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=400&h=300&fit=crop",
-    tag: "",
+    img: "https://images.unsplash.com/photo-1588880331179-bc9b93a8cb5e?w=600&h=450&fit=crop",
   },
   {
     name: "Терраса закрытая",
     price: "от 85 000 ₽",
-    img: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=400&h=300&fit=crop",
-    tag: "",
+    img: "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=600&h=450&fit=crop",
   },
   {
     name: "Стол из слэба дуба",
     price: "от 38 000 ₽",
-    img: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=400&h=300&fit=crop",
-    tag: "Авторская работа",
+    img: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=600&h=450&fit=crop",
   },
   {
     name: "Скамья из слэба вяза",
     price: "от 18 000 ₽",
-    img: "https://images.unsplash.com/photo-1506439773649-6e0eb8cfb237?w=400&h=300&fit=crop",
-    tag: "",
+    img: "https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=600&h=450&fit=crop",
+  },
+  {
+    name: "Навес из бруса",
+    price: "от 62 000 ₽",
+    img: "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=600&h=450&fit=crop",
   },
 ]
 
 const galleryImages = [
-  "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=500&h=400&fit=crop",
-  "https://images.unsplash.com/photo-1448630360428-65456885c650?w=500&h=400&fit=crop",
-  "https://images.unsplash.com/photo-1416879595882-3373a0480b5b?w=500&h=400&fit=crop",
-  "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=500&h=400&fit=crop",
-  "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=500&h=400&fit=crop",
-  "https://images.unsplash.com/photo-1506439773649-6e0eb8cfb237?w=500&h=400&fit=crop",
-  "https://images.unsplash.com/photo-1558618047-3c8c76ca7d13?w=500&h=400&fit=crop",
-  "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=500&h=400&fit=crop",
+  "https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&h=600&fit=crop",
+  "https://images.unsplash.com/photo-1518780664697-55e3ad937233?w=600&h=600&fit=crop",
+  "https://images.unsplash.com/photo-1589923188900-85dae523342b?w=600&h=600&fit=crop",
+  "https://images.unsplash.com/photo-1598300042247-d088f8ab3a91?w=600&h=600&fit=crop",
+  "https://images.unsplash.com/photo-1588880331179-bc9b93a8cb5e?w=600&h=600&fit=crop",
+  "https://images.unsplash.com/photo-1567538096630-e0c55bd6374c?w=600&h=600&fit=crop",
+  "https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=600&h=600&fit=crop",
+  "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?w=600&h=600&fit=crop",
 ]
 
 const priceData: PriceItem[] = [
@@ -337,7 +334,7 @@ const Index = () => {
             <h2 className="font-black" style={{ fontFamily: "Montserrat, sans-serif", fontSize: "clamp(1.9rem, 4vw, 2.8rem)", letterSpacing: "-0.03em", color: C.dark }}>Каталог</h2>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
             {catalogItems.map((item) => (
               <div
                 key={item.name}
@@ -347,27 +344,21 @@ const Index = () => {
                 onMouseLeave={e => { (e.currentTarget as HTMLDivElement).style.boxShadow = "0 2px 10px rgba(0,0,0,0.10)"; (e.currentTarget as HTMLDivElement).style.transform = "translateY(0)" }}
               >
                 {/* Photo — главный акцент */}
-                <div className="relative overflow-hidden" style={{ height: 200 }}>
+                <div className="relative overflow-hidden" style={{ height: 240 }}>
                   <img src={item.img} alt={item.name} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
-                  {/* Тег в углу фото */}
-                  {item.tag && (
-                    <div className="absolute top-2.5 left-2.5 px-2 py-0.5 text-xs font-bold text-white" style={{ backgroundColor: C.cta, borderRadius: 4 }}>
-                      {item.tag}
-                    </div>
-                  )}
                 </div>
 
                 {/* Info */}
-                <div className="px-4 py-3">
-                  <div className="font-bold text-sm mb-0.5" style={{ color: C.dark }}>{item.name}</div>
-                  <div className="font-black text-base mb-3" style={{ color: C.cta }}>{item.price}</div>
+                <div className="px-5 py-4">
+                  <div className="font-bold text-base mb-1" style={{ color: C.dark }}>{item.name}</div>
+                  <div className="font-black text-lg mb-4" style={{ color: C.cta }}>{item.price}</div>
                   <a
                     href="#calc"
-                    className="inline-flex items-center gap-1 text-xs font-semibold transition-opacity hover:opacity-60"
-                    style={{ color: C.woodDark, borderBottom: `1px solid ${C.woodDark}`, paddingBottom: 1 }}
+                    className="inline-flex items-center gap-1.5 font-semibold transition-opacity hover:opacity-60"
+                    style={{ color: C.woodDark, fontSize: 14, borderBottom: `1.5px solid ${C.woodDark}`, paddingBottom: 2 }}
                   >
                     Подробнее
-                    <Icon name="ArrowRight" size={12} />
+                    <Icon name="ArrowRight" size={14} />
                   </a>
                 </div>
               </div>
