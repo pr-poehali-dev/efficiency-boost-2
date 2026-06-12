@@ -244,13 +244,21 @@ const Index = () => {
             </div>
 
             <h1
-              className="font-black text-white mb-6 leading-[1.08]"
-              style={{ fontFamily: "Montserrat, sans-serif", fontSize: "clamp(2.4rem, 6vw, 4.2rem)", letterSpacing: "-0.03em" }}
+              className="font-black text-white mb-0 leading-[1.1]"
+              style={{ fontFamily: "Montserrat, sans-serif", fontSize: "clamp(2rem, 5vw, 3.4rem)", letterSpacing: "-0.03em" }}
             >
-              Хозблоки, беседки<br />
-              и мебель из слэбов —<br />
-              <span style={{ color: C.woodLight }}>собственное производство</span>
+              Хозблоки, беседки и мебель из слэбов
             </h1>
+
+            {/* Разделитель */}
+            <div style={{ width: 48, height: 3, backgroundColor: C.woodLight, margin: "16px 0" }} />
+
+            <div
+              className="font-black mb-8 leading-[1.1]"
+              style={{ fontFamily: "Montserrat, sans-serif", fontSize: "clamp(2rem, 5vw, 3.4rem)", letterSpacing: "-0.03em", color: C.woodLight }}
+            >
+              собственное производство
+            </div>
 
             <p className="text-lg mb-9 leading-relaxed" style={{ color: "rgba(255,255,255,0.82)", maxWidth: 500 }}>
               Изготавливаем из хвои и слэбов дуба&nbsp;/&nbsp;вяза. Гарантия 3 года. Монтаж под ключ за 3–7 дней.
