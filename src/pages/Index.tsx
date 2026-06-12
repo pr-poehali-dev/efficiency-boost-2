@@ -151,17 +151,17 @@ const reviews: Review[] = [
 
 /* ─── Цвета ─── */
 const C = {
-  bg: "#F4EDE3",
-  dark: "#2C1F0F",
+  bg: "#F5F5F5",
+  dark: "#111111",
   woodMid: "#A0713A",
   woodLight: "#D4A96A",
   woodDark: "#6B4423",
   pine: "#3D6B35",
-  cream: "#FAF5ED",
-  cta: "#C8501A",       // терракотовый — главный акцент
+  cream: "#FFFFFF",
+  cta: "#C8501A",
   ctaHover: "#A83E11",
-  shadow: "0 6px 24px rgba(44,31,15,0.13)",
-  shadowHover: "0 12px 36px rgba(44,31,15,0.22)",
+  shadow: "0 4px 16px rgba(0,0,0,0.18)",
+  shadowHover: "0 10px 32px rgba(0,0,0,0.28)",
 }
 
 /* ─── Общие стили кнопки CTA ─── */
@@ -302,10 +302,10 @@ const Index = () => {
                 Делаем из дерева —<br />
                 <span style={{ color: C.cta }}>честно и надёжно</span>
               </h2>
-              <p className="text-gray-600 mb-4 leading-relaxed">
+              <p className="mb-4 leading-relaxed" style={{ color: "#222" }}>
                 Работаем с 2015 года. Собственный цех в Подмосковье, свой парк станков, штатные мастера без субподряда. Используем камерную сушку хвои и ручной подбор слэбов дуба и вяза из Центральной России.
               </p>
-              <p className="text-gray-600 leading-relaxed">
+              <p className="leading-relaxed" style={{ color: "#222" }}>
                 Каждый заказ — от эскиза до монтажа. Без посредников. Цена, которую вы видите в каталоге — окончательная.
               </p>
             </div>
@@ -321,7 +321,7 @@ const Index = () => {
                     <Icon name={f.icon} fallback="CheckCircle" size={20} className="text-white" />
                   </div>
                   <div className="font-bold text-sm mb-1" style={{ color: C.dark }}>{f.title}</div>
-                  <div className="text-xs text-gray-500">{f.desc}</div>
+                  <div className="text-xs font-medium" style={{ color: "#444" }}>{f.desc}</div>
                 </div>
               ))}
             </div>
@@ -330,7 +330,7 @@ const Index = () => {
       </section>
 
       {/* ══════════════════ КАТАЛОГ ══════════════════ */}
-      <section id="catalog" className="py-20 px-5" style={{ backgroundColor: C.bg }}>
+      <section id="catalog" className="py-20 px-5" style={{ backgroundColor: "#EFEFEF" }}>
         <div className="max-w-7xl mx-auto">
           <div className="mb-10">
             {/* label hidden */}
@@ -458,7 +458,7 @@ const Index = () => {
       </section>
 
       {/* ══════════════════ ГАЛЕРЕЯ ══════════════════ */}
-      <section style={{ backgroundColor: C.bg }}>
+      <section style={{ backgroundColor: "#EFEFEF" }}>
         <div className="max-w-7xl mx-auto px-5 pt-20 pb-10">
           {/* label hidden */}
           <h2 className="font-black mb-0" style={{ fontFamily: "Montserrat, sans-serif", fontSize: "clamp(1.9rem, 4vw, 2.8rem)", letterSpacing: "-0.03em", color: C.dark }}>
@@ -497,12 +497,12 @@ const Index = () => {
             <h2 className="font-black mb-2" style={{ fontFamily: "Montserrat, sans-serif", fontSize: "clamp(1.9rem, 4vw, 2.8rem)", letterSpacing: "-0.03em", color: C.dark }}>
               Прайс-лист
             </h2>
-            <p className="text-sm text-gray-500">Цены окончательные. Доставка и монтаж включены по Московской области.</p>
+            <p className="text-sm font-medium" style={{ color: "#444" }}>Цены окончательные. Доставка и монтаж включены по Московской области.</p>
           </div>
 
           <div className="space-y-3">
             {priceData.map((cat, i) => (
-              <div key={cat.name} style={{ border: "1.5px solid rgba(160,113,58,0.22)", borderRadius: 18, overflow: "hidden", boxShadow: openPrice === i ? C.shadow : "none", transition: "box-shadow 0.2s" }}>
+              <div key={cat.name} style={{ border: "1.5px solid #D0D0D0", borderRadius: 18, overflow: "hidden", boxShadow: openPrice === i ? C.shadow : "none", transition: "box-shadow 0.2s" }}>
                 <button
                   onClick={() => setOpenPrice(openPrice === i ? null : i)}
                   className="w-full flex items-center justify-between px-6 py-4 text-left hover:opacity-95 transition-opacity"
@@ -522,8 +522,8 @@ const Index = () => {
                 {openPrice === i && (
                   <div className="divide-y" style={{ borderColor: "rgba(160,113,58,0.1)" }}>
                     {cat.items.map((item) => (
-                      <div key={item.name} className="flex items-center justify-between px-6 py-3" style={{ backgroundColor: "#FDFAF6" }}>
-                        <span className="text-sm text-gray-700">{item.name}</span>
+                      <div key={item.name} className="flex items-center justify-between px-6 py-3" style={{ backgroundColor: "#fff" }}>
+                        <span className="text-sm font-medium" style={{ color: "#222" }}>{item.name}</span>
                         <span className="font-black text-sm ml-4 shrink-0" style={{ color: C.cta }}>{item.price}</span>
                       </div>
                     ))}
@@ -536,7 +536,7 @@ const Index = () => {
       </section>
 
       {/* ══════════════════ ОТЗЫВЫ ══════════════════ */}
-      <section className="py-20 px-5" style={{ backgroundColor: C.bg }}>
+      <section className="py-20 px-5" style={{ backgroundColor: "#fff" }}>
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-10">
             <div>
@@ -555,21 +555,21 @@ const Index = () => {
               <div
                 key={r.name}
                 className="p-5 flex flex-col"
-                style={{ backgroundColor: "#fff", borderRadius: 20, border: "1px solid rgba(160,113,58,0.15)", boxShadow: C.shadow }}
+                style={{ backgroundColor: "#fff", borderRadius: 20, border: "1.5px solid #E0E0E0", boxShadow: C.shadow }}
               >
                 <div className="flex gap-0.5 mb-3">
                   {Array.from({ length: r.rating }).map((_, i) => (
                     <Icon key={i} name="Star" size={14} style={{ color: "#F59E0B" }} />
                   ))}
                 </div>
-                <p className="text-sm text-gray-600 leading-relaxed flex-1">«{r.text}»</p>
+                <p className="text-sm leading-relaxed flex-1 font-medium" style={{ color: "#222" }}>«{r.text}»</p>
                 <div className="flex items-center gap-2 mt-5">
                   <div className="w-8 h-8 flex items-center justify-center text-xs font-black text-white shrink-0" style={{ backgroundColor: C.woodMid, borderRadius: "50%" }}>
                     {r.name[0]}
                   </div>
                   <div>
-                    <div className="text-sm font-semibold" style={{ color: C.dark }}>{r.name}</div>
-                    <div className="text-xs text-gray-400">{r.date}</div>
+                    <div className="text-sm font-bold" style={{ color: "#111" }}>{r.name}</div>
+                    <div className="text-xs font-medium" style={{ color: "#777" }}>{r.date}</div>
                   </div>
                 </div>
               </div>
