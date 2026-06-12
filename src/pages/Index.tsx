@@ -234,7 +234,7 @@ const Index = () => {
         </div>
 
         <div className="relative z-10 max-w-7xl mx-auto px-5 py-20 w-full">
-          <div style={{ maxWidth: "780px" }}>
+          <div style={{ maxWidth: "640px" }}>
             <div
               className="inline-flex items-center gap-2 px-4 py-2 text-sm font-semibold mb-7"
               style={{ backgroundColor: "rgba(212,169,106,0.18)", color: C.woodLight, border: "1px solid rgba(212,169,106,0.35)", borderRadius: 30 }}
